@@ -3,4 +3,4 @@ uvicorn[standard]
 pydantic-settings
 python-dotenv
 chromadb
-google-generativeai
+google-genai
