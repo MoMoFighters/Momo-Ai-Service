@@ -6,11 +6,12 @@ from fastapi import APIRouter
 """
 
 from app.schema.embed_schema import EmbedRequest, EmbedResponse
+from app.service.embedding_service import embed_document
 
 router = APIRouter(prefix="/embed", tags=["embed"])
 
 
 @router.post("", response_model=EmbedResponse)
 def create_embedding(request: EmbedRequest):
-    # TODO: Gemini 임베딩 API 연동 (다음 작업)
-    return EmbedResponse(embedding=[])
+    embedding = embed_document(request.text)
+    return EmbedResponse(embedding=embedding)
