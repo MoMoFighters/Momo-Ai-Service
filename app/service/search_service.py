@@ -6,7 +6,7 @@ from app.service.embedding_service import embed_query
 자바로 치면 Repository가 DB 조회해서 결과 매핑해주는 것과 같은 위치.
 """
 
-SIMILARITY_THRESHOLD = 0.4
+SIMILARITY_THRESHOLD = 0.67
 
 
 def search_policy(query: str, top_k: int = 5) -> list[str]:
