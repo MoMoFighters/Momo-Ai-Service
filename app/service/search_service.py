@@ -1,3 +1,4 @@
+from app.config.settings import settings
 from app.service.chroma_client import get_collection
 from app.service.embedding_service import embed_query
 
@@ -5,8 +6,6 @@ from app.service.embedding_service import embed_query
 질문 -> 벡터 -> Chroma 유사도 검색 -> 관련 문서 텍스트 리스트.
 자바로 치면 Repository가 DB 조회해서 결과 매핑해주는 것과 같은 위치.
 """
-
-SIMILARITY_THRESHOLD = 0.67
 
 
 def search_policy(query: str, top_k: int = 5) -> list[str]:
@@ -27,5 +26,5 @@ def search_policy(query: str, top_k: int = 5) -> list[str]:
     return [
         doc
         for doc, distance in zip(documents, distances)
-        if (1 - distance) >= SIMILARITY_THRESHOLD
+        if (1 - distance) >= settings.SIMILARITY_THRESHOLD
     ]
