@@ -11,6 +11,9 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str          # 필수값 — 없으면 앱 시작할 때 바로 에러
     CHROMA_HOST: str = "localhost"
     CHROMA_PORT: int = 8000
+    # 유사도 쓰레쉬홀드 - 코드에 박아두지 않고 .env로 뺌
+    # .env에 값이 없어도 기본값 0.67로 동작하게 해서, 기존 동작은 안 깨지고 필요할 때만 .env에서 조정 가능
+    SIMILARITY_THRESHOLD: float = 0.67
 
 
 # 앱 전체에서 이 객체 하나만 가져다 쓰면 됨 (싱글턴처럼 사용)
