@@ -8,7 +8,7 @@ from app.service.embedding_service import embed_query
 """
 
 
-def search_policy(query: str, top_k: int = 5) -> list[str]:
+def search_policy(query: str, top_k: int = 8) -> list[str]:
     query_vector = embed_query(query)
     collection = get_collection()
 
