@@ -19,11 +19,20 @@ def load_chunks() -> list[str]:
             content = f.read()
 
         sections = content.split("\n## ")
+        file_chunks = []
         for i, section in enumerate(sections):
             text = section if i == 0 else "## " + section
             text = text.strip()
             if text:
-                chunks.append(text)
+                file_chunks.append(text)
+
+        # 제목만 있는 첫 링크는 내용이 짧아 검색 상위권을 부당하게 차지하는
+        # 문제가 있어서, 존재하면 바로 다음 청크와 합쳐서 하나의 링크로 만든다.
+        if len(file_chunks) >= 2:
+            file_chunks[1] = file_chunks[0] + "\n\n" + file_chunks[1]
+            file_chunks = file_chunks[1:]
+
+        chunks.extend(file_chunks)
 
     return chunks
 
