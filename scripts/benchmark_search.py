@@ -13,7 +13,7 @@ Hit@k(정답이 top_k 안에 들어왔는지)와 MRR(평균 역순위)을 계산
 TEST_CASES = [
     {"question": "환불은 언제까지 가능해?", "expected_keyword": "3일 이내"},
     {"question": "신고하면 얼마나 정지돼?", "expected_keyword": "1주일 정지"},
-    {"question": "비밀번호를 수정하려면 어디로 가야해?", "expected_keyword": "현재 비밀번호를 반드시 입력"},
+    {"question": "모모시티에서 비밀번호를 수정하려면 가야되는 페이지가 어디인지 짧은 문장으로 대답해", "expected_keyword": "현재 비밀번호를 반드시 입력"},
     {"question": "포인트는 어떻게 모아?", "expected_keyword": "챕터 하나를 완료할 때마다"},
     {"question": "건물은 어떻게 지어져?", "expected_keyword": "수강 신청에 성공하면"},
     {"question": "그룹 스터디방 몇 명까지 가능해?", "expected_keyword": "최대 4명"},
