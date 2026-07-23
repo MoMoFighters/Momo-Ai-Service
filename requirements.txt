@@ -4,3 +4,4 @@ pydantic-settings
 python-dotenv
 chromadb
 google-genai
+pandas
