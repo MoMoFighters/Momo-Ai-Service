@@ -32,3 +32,23 @@ jobs:
           tags: |
             frozenahri302/momo-ai-service:latest
             frozenahri302/momo-ai-service:${{ github.sha }}
+
+      - name: EC2 배포
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull frozenahri302/momo-ai-service:latest
+            docker stop momo-ai || true
+            docker rm momo-ai || true
+            docker run -d --name momo-ai \
+              -p 8001:8001 \
+              -e GEMINI_API_KEY="${{ secrets.GEMINI_API_KEY }}" \
+              -e CHROMA_HOST=localhost \
+              -e CHROMA_PORT=8000 \
+              -v /home/ubuntu/momo-chroma-data:/app/chroma \
+              --entrypoint sh \
+              frozenahri302/momo-ai-service:latest \
+              -c "chroma run --host 0.0.0.0 --port 8000 & sleep 3 && uvicorn app.main:app --host 0.0.0.0 --port 8001"
